@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user_app',
+    'admin_app',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -72,7 +73,7 @@ REST_FRAMEWORK = {
       ],
 }
 SIMPLE_JWT = {
-     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+     'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
      'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 ROOT_URLCONF = 'backend.urls'
@@ -136,7 +137,13 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 
 USE_TZ = True
+import os
 
+# Actual directory user files go to
+MEDIA_ROOT = 'media/'
+
+# URL used to access the media
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

@@ -1,7 +1,8 @@
-import axios from 'axios'
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './features/user';
 
-const instance = axios.create({
-    baseURL:'http://127.0.0.1:8000/',
-
+export const store = configureStore({
+	reducer: {
+		user: userReducer,
+	},
 })
-export default instance 
