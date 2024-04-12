@@ -37,6 +37,9 @@ function SignUp() {
         if (password.trim() === '') {
             errors.password = 'password is required'
         }
+        else if (password.length <6) {
+            errors.password = 'password need atleast 6 characters'
+        }
         if (conformPassword.trim() === '') {
             errors.conformpassword = 'conform password is required'
         }
@@ -45,7 +48,7 @@ function SignUp() {
             errors.conformpassword = 'passwords are not match'
         }
 
-        if (errors != {}) {
+        if (errors == {}) {
             dispatch(register({ username, firstname, lastname, email, password })).then(
                 e => {
                     if (e.meta.requestStatus === 'rejected') {

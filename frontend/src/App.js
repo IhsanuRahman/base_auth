@@ -7,12 +7,10 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './features/user';
 import Profile from "./user/pages/Profile";
-import Logout from "./user/Logout";
 import AdminLogin from "./admin/pages/AdminLogin";
 import UserDetials from "./admin/pages/UserDetials";
 import CreateUser from "./admin/pages/CreateUser";
 import ResetPassword from "./user/pages/ResetPassword";
-import AdminLogout from "./admin/AdminLogout";
 function App() {
   const dispatch = useDispatch();
 
@@ -29,8 +27,6 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/change-password" element={<ResetPassword/>}/>
-          <Route path="/logout" element={<Logout/>}/>
-          <Route path="/admin-logout" element={<AdminLogout/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/signup" element={<SignUp/>}/>
         </Routes>

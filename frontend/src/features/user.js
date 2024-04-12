@@ -237,7 +237,11 @@ export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
     const cookies = new Cookies()
     const cookie = cookies.get('csrftoken')
     try {
-
+        const refresh=localStorage.getItem('refresh_token')
+        const access= localStorage.getItem('access_token')
+        if (access==null||refresh==null){
+            return thunkAPI.rejectWithValue('token not founded')
+        }
         const res = await axios.post("http://127.0.0.1:8000/api/logout", {
             'refresh_token': localStorage.getItem('refresh_token'),
             'access_token': localStorage.getItem('access_token'),
@@ -451,9 +455,9 @@ export const deleteUser = createAsyncThunk(
             console.log('data',data);
 
             if (res.status === 200) {
-                alert('user deletion success')
                 const dispatch =useDispatch()
                 dispatch(getUsers(''))
+                alert('user deletion success')
                 return data;
             } else {
                 console.log('err',res.data.message)
@@ -565,6 +569,9 @@ const userSlice = createSlice({
 
             }).addCase(getUser.rejected, state => {
                 state.loading = false;
+                state.isAuthenticated = false;
+                state.user={}
+
             }).addCase(checkAuth.fulfilled, state => {
                 state.loading = false;
                 const s1 = state.isAuthenticated
@@ -576,6 +583,8 @@ const userSlice = createSlice({
             })
             .addCase(checkAuth.rejected, (state) => {
                 state.loading = false;
+                state.isAuthenticated = false;
+                state.user={}
                 console.log('checkauth rejected');
                 
             }).addCase(logout.pending, state => {

@@ -4,12 +4,8 @@ from django.urls import include, path
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework.authtoken import views as auth_views
 
-from rest_framework import routers
-router = routers.DefaultRouter()
-router.register('userimage', views.MyModelViewSet)
-print(router.urls)
+
 urlpatterns = [
-    path('', include(router.urls)),
     path('user', views.get_user),
     path('user/update', views.update_user),
     path('login', jwt_views.TokenObtainPairView.as_view()),

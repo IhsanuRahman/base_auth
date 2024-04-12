@@ -39,12 +39,17 @@ function Login() {
       errorMessages.password=''
       setErrorMessages({...errorMessages})
     dispatch(login({ username, password })).then(e => {
-      if (e.meta.requestStatus === 'rejected')
-      setError({isError:true,message:JSON.stringify(e.payload)})
+      if (e.meta.requestStatus === 'rejected'){
+        let message=''
+        for (var attr in e.payload){
+          message=e.payload[attr]+','+message
+        }
+      setError({isError:true,message:message})}
       else if (e.meta.requestStatus==='fulfilled')
       navigator('/')
     })}else{
       errorMessages.password=''
+      
       setErrorMessages({...errorMessages})
 
     }

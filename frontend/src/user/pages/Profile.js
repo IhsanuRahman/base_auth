@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateProfile } from '../../features/user'
+import { logout, updateProfile } from '../../features/user'
 import { useNavigate } from 'react-router-dom'
 
 function Profile() {
@@ -53,8 +53,10 @@ function Profile() {
   }
   return (
     <div className='bg-slate-300 w-full h-screen p-0'>
-      <header className='h-20 w-full p-5 flex '><a className='font text-3xl mr-4 ' onClick={_=>navigator('/')}>&lt; </a><p className='text-4xl text-gray-500 font-thin'>|</p><h1 className='font-bold text-3xl'>profile</h1> <button className='bg-red-600 h-7 w-20 fixed right-3 text-white  rounded' onClick={_ => {
-        if (window.confirm('are sure to logout')) { return navigator('/logout') }
+      <header className='h-20 w-full p-5 flex '><a className='font text-3xl mr-4 cursor-pointer' onClick={_=>navigator('/')}>&lt; </a><p className='text-4xl text-gray-500 font-thin'>|</p><h1 className='font-bold text-3xl'>profile</h1> <button className='bg-red-600 h-7 w-20 fixed right-3 text-white  rounded' onClick={_ => {
+        if (window.confirm('are sure to logout')) { 
+          dispatch (logout())
+          return navigator('/login') }
       }}>Logout</button></header>
       <div className='w-full h-full p-10  flex flex-col  items-center gap-4'>
         <div className=' h-36 rounded-full    w-36 ' style={image ? { backgroundImage: `url('${URL.createObjectURL(image)}')`, backgroundPosition: 'center', backgroundSize: 'contain' } : user.image != null ? { backgroundImage: `url('http://127.0.0.1:8000${user.image}')`, backgroundPosition: 'center', backgroundSize: 'contain' } : { backgroundColor: '#374151' }}>

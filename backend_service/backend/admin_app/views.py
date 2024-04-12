@@ -9,7 +9,7 @@ from rest_framework_simplejwt.tokens import  RefreshToken, TokenError, AccessTok
 from rest_framework.exceptions import AuthenticationFailed
 from .serializer import RegisterSerializer, UserSerializer as ClientSerializer,UserUpdateSerializer
 from django.db.models import Q
-
+from django.contrib.postgres.search import SearchVector
 @api_view(['GET','POST'])
 def admin_login_view( request):
     print(request.data)
@@ -39,7 +39,9 @@ def get_users(request):
     if request.data:
         search=request.data.get('search',"")
         if search !='':
-            users=users.filter(Q(username__icontains=search)|Q(email__icontains=search)|Q(first_name__icontains=search)|Q(last_name__icontains=search))
+            users=users.filter(
+                Q(username__icontains=search)|Q(email__icontains=search)|Q(first_name__icontains=search)|Q(last_name__icontains=search)
+                )
     datas=[]
     for user in users:
         data=ClientSerializer(user).data

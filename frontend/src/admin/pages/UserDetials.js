@@ -56,11 +56,10 @@ function UserDetials() {
 
     return (
         <div className='bg-slate-300 w-full h-screen p-0'>
-            <header className='h-20 w-full p-5 flex '><a className='font text-3xl mr-4 ' onClick={_ => navigate('/admin')}>&lt; </a><p className='text-4xl text-gray-500 font-thin'>|</p><h1 className='font-bold text-3xl'>Detials</h1> </header>
+            <header className='h-20 w-full p-5 flex '><a className='font text-3xl mr-4 cursor-pointer' onClick={_ => navigate('/admin')}>&lt; </a><p className='text-4xl text-gray-500 font-thin'>|</p><h1 className='font-bold text-3xl'>Detials</h1> </header>
             <button className='bg-red-600 h-7 w-28 float-right mr-10 rounded text-white font-semibold' onClick={_ => {
                 if (window.confirm('are you sure to delete')) {
                     dispatch(deleteUser(id))
-                    dispatch(getUsers(''))
                     navigate('/admin')
                 }
             }}>delete user</button>
@@ -109,7 +108,6 @@ function UserDetials() {
 
                     setSuperUser(e.target.checked)
                 }} /></div>
-                <button className='bg-yellow-500 rounded w-44 h-8 mr-auto ml-64 mt-10 text-white font-semibold'>change password</button>
                 <button className='bg-green-800 w-20 h-10 rounded ml-auto mt-auto mb-20 mr-20 text-white font-semibold' onClick={savehandler}>save</button>
             </div>
 

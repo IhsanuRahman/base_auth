@@ -12,16 +12,16 @@ function Home() {
     if (!isAuthenticated && !loading && Object.keys(user).length === 0)
         return navigate('/login')
     return (
-        <div>
+        <div >
             <header className='h-20 w-full p-5 flex justify-between border-b-4 mb-3'>
                 <h1 className='font-bold text-3xl'>Home</h1>
                 {Object.keys(user).length ===0  ?<span className='flex items-center'><h4 className='text-2xl cursor-pointer' onClick={_=>navigate('/login')}>login</h4>&nbsp; or &nbsp;
                 <h4 className='text-2xl cursor-pointer' onClick={_=>navigate('/signup')}>signup</h4></span>
              :<h4 className='text-2xl cursor-pointer' onClick={_=>navigate('/profile')}>profile</h4>}
              </header>
-            <center><h1>hello {user.username ? user.username : ''}</h1>
+            <div className='mt-auto w-full flex justify-center align-middle h-96'><h1 className='m-auto text-3xl'>hello {user.username ? user.username : ''}</h1>
             
-            </center>
+            </div>
         </div>
     )
 }
